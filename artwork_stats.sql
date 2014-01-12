@@ -81,9 +81,5 @@ EXECUTE _exec;
 
 SET @incomplete := (SELECT total-complete FROM artwork_stats WHERE artwork_stats.section = _section);
 UPDATE artwork_stats SET incomplete = @incomplete WHERE section = _section;
-SELECT section,total,complete,incomplete FROM artwork_stats WHERE section = _section;
+#SELECT section,total,complete,incomplete FROM artwork_stats WHERE section = _section;
 END $$ # END OF PROCEDURE
-
-CALL get_artwork_stats(1);
-CALL get_artwork_stats(2);
-CALL get_artwork_stats(3);
