@@ -34,7 +34,7 @@ CREATE TRIGGER ai_tblImages AFTER INSERT ON tblImages
 	END;
 $$
 
-CREATE TRIGGER au_tblImagesAFTER UPDATE ON tblImages
+CREATE TRIGGER au_tblImages AFTER UPDATE ON tblImages
 	FOR EACH ROW BEGIN
 		CALL get_artwork_stats(1);
 	END;
