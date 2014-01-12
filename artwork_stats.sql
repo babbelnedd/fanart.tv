@@ -15,7 +15,7 @@ DECLARE initial_select_part NVARCHAR(10000);
 DECLARE completeness_part NVARCHAR(1000);
 DECLARE complete_select NVARCHAR(12000);
 DECLARE type_table NVARCHAR(255);
-DECLARE cursor1 CURSOR FOR SELECT type_id,type_name FROM fanart_types WHERE type_section = _section;
+DECLARE cursor1 CURSOR FOR SELECT type_id,type_name FROM fanart_types WHERE type_section = _section AND type_limit > -1;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = 1;
 # /SETUP ############################################################
 

@@ -14,7 +14,7 @@ DECLARE having_part NVARCHAR(1000);
 DECLARE completeness_part NVARCHAR(1000);
 DECLARE complete_select NVARCHAR(12000);
 DECLARE type_table NVARCHAR(255);
-DECLARE cursor1 CURSOR FOR SELECT type_id,type_name FROM fanart_types WHERE type_section = section;
+DECLARE cursor1 CURSOR FOR SELECT type_id,type_name FROM fanart_types WHERE type_section = section AND type_limit > -1;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = 1;
 # /SETUP ############################################################
 
@@ -80,11 +80,6 @@ CLOSE cursor1;
 SET having_part := CONCAT(having_part, '	ORDER BY completeness ASC');
 SET completeness_part := CONCAT(completeness_part, ') AS completeness');
 SET @exec:=CONCAT(select_part, completeness_part, ' FROM ', @type_table, ' ', having_part);
-#SELECT @exec;
 PREPARE _exec FROM @exec;
 EXECUTE _exec;
-#DEALLOCATE @exec;
 END $$ # END OF PROCEDURE
-
-
-#CALL fanart_test.get_incomplete_artwork(1);
