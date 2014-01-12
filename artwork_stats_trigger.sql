@@ -1,4 +1,11 @@
 # MOVIES
+DROP TRIGGER IF EXISTS ai_movie_images;
+DROP TRIGGER IF EXISTS au_movie_images;
+DROP TRIGGER IF EXISTS ai_music_images;
+DROP TRIGGER IF EXISTS au_music_images;
+DROP TRIGGER IF EXISTS ai_tblImages;
+DROP TRIGGER IF EXISTS au_tblImages;
+
 DELIMITER $$
 CREATE TRIGGER ai_movie_images AFTER INSERT ON movie_images
 	FOR EACH ROW BEGIN
